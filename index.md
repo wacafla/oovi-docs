@@ -1,9 +1,11 @@
 ---
 layout: default
+title: "oovi docs home"
+toc: true
 ---
 
 * TOC
-{:toc}
+{% toc %}
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
