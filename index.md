@@ -3,32 +3,7 @@ layout: default
 title: "oovi docs home"
 ---
 
-## Local SEO
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-
-
-## Agent Outreach
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-
-## Home Services
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-[Link to another page](./another-page.html).
-
-
-
+[Local SEO Flow](./localseo.html).
 
 There should be whitespace between paragraphs.
 
