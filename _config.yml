@@ -36,8 +36,12 @@ plugins:
   - jekyll-toc
 
 collections:
-  - local_seo
-  - call_buyers
+  local_seo:
+    output: true
+    permalink: /local-seo/:path:/
+  call_buyers:
+    output: true
+    permalink: /call-buyers/:path:/
 
 # Exclude from processing.
 # The following items will not be processed, by default.
