@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: "Expired Domain Workflow for Local SEO"
 description: "Finding, qualifying, purchasing, and developing expired domains for local SEO projects."
 ---
