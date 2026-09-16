@@ -78,7 +78,10 @@ a { color: #d5000d; }
 a:hover { color: #c5000c; }
 */
 
-a { color: #0077b6; }
+a { 
+    color: #0077b6;
+    text-decoration: underline;
+}
 a:hover { color: #0077b6; }
 
 header { padding-top: 35px; padding-bottom: 25px; }
@@ -148,8 +151,6 @@ h5 { font-size: 1em; color: #303030; }
 h6 { font-size: .8em; color: #303030; }
 
 p { margin-bottom: 20px; font-weight: 300; }
-
-a { text-decoration: none; }
 
 p a { font-weight: 400; }
 
