@@ -145,6 +145,9 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-gist (1.5.0)
       octokit (~> 4.2)
+    jekyll-github-card (0.2.0)
+      jekyll (>= 3.7, < 5.0)
+      logger (~> 1.5)
     jekyll-github-metadata (2.16.1)
       jekyll (>= 3.4, < 5.0)
       octokit (>= 4, < 7, != 4.4.0)
@@ -314,6 +317,7 @@ DEPENDENCIES
   http_parser.rb (~> 0.6.0)
   jekyll (~> 3.9.3)
   jekyll-feed (~> 0.12)
+  jekyll-github-card
   jekyll-remote-theme
   jekyll-seo-tag
   jekyll-toc
@@ -368,6 +372,7 @@ CHECKSUMS
   jekyll-default-layout (0.1.5) sha256=c626be4e4a5deafca123539da2cd22ff873be350cafd4da134039efdf24320af
   jekyll-feed (0.17.0) sha256=689aab16c877949bb9e7a5c436de6278318a51ecb974792232fd94d8b3acfcc3
   jekyll-gist (1.5.0) sha256=495b6483552a3e2975a2752964ea7acddd545bc6e13ce2be15a50cec8d4c9f0f
+  jekyll-github-card (0.2.0) sha256=a848584f09a169935c5fa4a1727ba847902a1cc10c90c9a679197178a3445d88
   jekyll-github-metadata (2.16.1) sha256=4cf29988bdaf24774a7bc07fae71e54424ddfaa2895f742d8fa3036d0db65b4c
   jekyll-include-cache (0.2.1) sha256=c7d4b9e551732a27442cb2ce853ba36a2f69c66603694b8c1184c99ab1a1a205
   jekyll-mentions (1.6.0) sha256=39e801024cb6f2319b3f78a29999d0068ef5f68bc5202b8757d5354fef311ed9

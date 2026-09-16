@@ -48,6 +48,8 @@ gem "jekyll-remote-theme"
 
 gem "jekyll-seo-tag"
 
+gem 'jekyll-github-card'
+
 gem "liquid", "~> 4.0.4"
 
 gem 'jekyll-toc'
