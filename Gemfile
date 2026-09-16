@@ -49,4 +49,6 @@ gem "jekyll-remote-theme"
 
 gem "liquid", "~> 4.0.4"
 
+gem 'jekyll-toc'
+
 gem "webrick", "~> 1.9"
