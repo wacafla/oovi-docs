@@ -30,8 +30,8 @@ twitter_username: jekyllrb
 github_username:  jekyll
 
 # Build settings
-#theme: minima
-remote_theme: https://github.com/wacafla/beautiful-jekyll
+theme: tactile
+#remote_theme: https://github.com/wacafla/beautiful-jekyll
 plugins:
   - jekyll-feed
 
