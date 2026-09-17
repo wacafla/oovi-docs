@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Expired Domain Workflow for Local SEO"
-description: "Finding, qualifying, purchasing, and developing expired domains for local SEO projects."
+title: "Local SEO Workflow"
+description: "Step by step from domain acquisition to monetization."
 ---
 
 # Expired Domain Workflow for Local SEO
