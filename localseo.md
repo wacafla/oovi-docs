@@ -11,7 +11,7 @@ description: "Step by step from domain acquisition to monetization."
 [Content Creatiom](#3-content-creation)\
 [Link Building](#4-link-building)\
 [Ongoing Maintenance](#5-ongoing-maintenance)\
-[Reference Materials](#6-reference-materials)\
+[Reference Materials](#6-reference-materials)
 
 ### Scope
 
