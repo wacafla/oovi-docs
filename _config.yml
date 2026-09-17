@@ -28,6 +28,8 @@ url: "https://docs.oovi.co" # the base hostname & protocol for your site, e.g. h
 twitter_username: wacafla
 github_username:  wacafla
 
+permalink: /:title/
+
 # Build settings
 #theme: tactile 
 remote_theme: pages-themes/tactile@v0.2.0
