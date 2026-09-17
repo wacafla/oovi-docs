@@ -4,18 +4,14 @@ title: "Local SEO Workflow"
 description: "Step by step from domain acquisition to monetization."
 ---
 
-# Expired Domain Workflow for Local SEO
+### Sections
 
-## Document Overview
-
-- **Process owner:** [Name or team]
-- **Last updated:** [YYYY-MM-DD]
-- **Status:** Draft
-- **Related resources:** [Links to tools, templates, and reference documents]
-
-### Purpose
-
-Document the process for finding expired domains, evaluating their suitability, purchasing qualified domains, and preparing them for use in local SEO projects.
+[Finding Domains](#1-finding-domains)\
+[Domain Setup](#2-domain-setup)\
+[Content Creatiom](#3-content-creation)\
+[Link Building](#4-link-building)\
+[Ongoing Maintenance](#5-ongoing-maintenance)\
+[Reference Materials](#6-reference-materials)\
 
 ### Scope
 
