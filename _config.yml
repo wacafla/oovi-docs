@@ -22,17 +22,29 @@ title: Oovi Domain Intelligence
 email: steven@oovi.co
 description: >-
   Technical blueprint for finding high-value local service domains before they drop.
+lang: en-US
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://docs.oovi.co" # the base hostname & protocol for your site, e.g. http://example.com
+repository: wacafla/oovi-docs
 twitter_username: wacafla
 github_username:  wacafla
+
+edit: false
+revision: true
+copyright: Oovi
+addons:
+  - github
+addons_commit: true
+readme_index:
+  with_frontmatter: true
 
 permalink: /:title/
 
 # Build settings
-#theme: tactile 
-remote_theme: pages-themes/tactile@v0.2.0
+theme: null
+remote_theme: Appdynamics/jekyll-rtd-theme@master
 plugins:
+  - jekyll-remote-theme
   - jekyll-feed
   - jekyll-seo-tag
 
