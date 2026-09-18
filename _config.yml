@@ -18,11 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: oovi docs
+title: Oovi Domain Intelligence
 email: steven@oovi.co
-description: >- # this means to ignore newlines until "baseurl:"
-  This is the central location for all oovi process docs, SOP's, general documentation and whatever else
-  lands here. Eventually it will be organized.
+description: >-
+  Technical blueprint for turning daily expired-domain feeds into high-value local service websites.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://docs.oovi.co" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: wacafla
@@ -36,14 +35,6 @@ remote_theme: pages-themes/tactile@v0.2.0
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-
-collections:
-  local_seo:
-    output: true
-    permalink: /local-seo/:path:/
-  call_buyers:
-    output: true
-    permalink: /call-buyers/:path:/
 
 # Exclude from processing.
 # The following items will not be processed, by default.

@@ -1,0 +1,61 @@
+.docs-shell {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+}
+
+.docs-nav {
+  position: sticky;
+  top: 18px;
+  padding: 18px 16px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+}
+
+.docs-nav strong,
+.docs-nav a {
+  display: block;
+}
+
+.docs-nav strong {
+  margin-bottom: 10px;
+  color: #303030;
+}
+
+.docs-nav a {
+  padding: 6px 8px;
+  color: #2879a8;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+.docs-nav a:hover,
+.docs-nav a.active {
+  background: #eef6fa;
+  border-left-color: #2879a8;
+}
+
+.docs-content {
+  min-width: 0;
+}
+
+.docs-content table {
+  width: 100%;
+  display: table;
+}
+
+.docs-content pre {
+  overflow-x: auto;
+}
+
+@media (max-width: 760px) {
+  .docs-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-nav {
+    position: static;
+  }
+}

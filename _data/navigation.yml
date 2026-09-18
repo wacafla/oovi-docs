@@ -1,0 +1,20 @@
+- title: Overview
+  url: /
+- title: Machine architecture
+  url: /architecture/
+- title: Domain pipeline
+  url: /pipeline/
+- title: Geo keyword intelligence
+  url: /keyword-intelligence/
+- title: Scoring and AI review
+  url: /scoring/
+- title: Registration gate
+  url: /registration/
+- title: WordPress factory
+  url: /wordpress-factory/
+- title: QA and operations
+  url: /qa-operations/
+- title: Data model
+  url: /data-model/
+- title: 90-day roadmap
+  url: /roadmap/

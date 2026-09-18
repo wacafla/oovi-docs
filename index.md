@@ -1,114 +1,66 @@
 ---
 layout: default
-title: "oovi docs home"
+title: Domain Intelligence Playbook
+nav_order: 1
+description: Production blueprint for selecting and building the best expired domains for local service SEO.
+permalink: /
 ---
 
-[Local SEO Flow](./localseo.html).
+# Domain Intelligence Playbook
+{: .fs-9 }
 
-There should be whitespace between paragraphs.
+Turn hundreds of thousands of daily expired-domain rows into zero to five defensible local service assets. The normal target is two or three registrations per day.
+{: .fs-6 .fw-300 }
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+[Start with the machine architecture]({{ '/architecture/' | relative_url }})
+[Review the scoring model]({{ '/scoring/' | relative_url }})
 
-# Header 1
+---
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+## Operating target
 
-## Header 2
+| Stage | Expected daily volume |
+|:--|--:|
+| Raw feed | 100,000–500,000 |
+| Hard-filter survivors | 5,000–25,000 |
+| Enriched candidates | 250–1,500 |
+| AI-reviewed finalists | 20–50 |
+| Human review queue | 10–20 |
+| Registered domains | 0–5 |
 
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
+The correct result can be zero. The limit is a ceiling, not a quota.
 
-### Header 3
+## Core rules
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+Evidence before opinion
+: Store raw evidence separately from scores and AI explanations.
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+Cheap decisions first
+: Do not pay for SEO data until deterministic rules have removed most candidates.
 
-#### Header 4
+Standard registration only
+: Exclude auctions, backorders, premium aftermarket listings, and taken domains.
 
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
+Human registration gate
+: Keep final registration approval human until at least 60 days of measured results.
 
-##### Header 5
+Business outcomes win
+: Optimize for qualified lead profit and asset value, not third-party SEO metrics alone.
 
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
+## Recommended stack
 
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```
-The final element.
-```
+| Layer | Recommendation |
+|:--|:--|
+| Durable orchestration | Temporal Cloud |
+| File landing | Amazon S3 + EventBridge |
+| Data processing | Python + Polars |
+| System of record | PostgreSQL |
+| SEO and keyword evidence | DataForSEO |
+| AI review and generation | OpenAI Responses API |
+| Review console | Next.js |
+| Site factory | WordPress + WP-CLI + REST API |
+| Build automation | GitHub Actions |
+| QA | Playwright + Lighthouse CI + Screaming Frog |
+| DNS and edge | Cloudflare |
+| Measurement | Search Console + GA4 + CallRail |
+| Reporting | Metabase |
