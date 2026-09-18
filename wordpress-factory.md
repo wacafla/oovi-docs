@@ -13,7 +13,7 @@ AI can complete most repeatable site production when it works inside a controlle
 
 ```mermaid
 flowchart LR
-    A[Approved domain] --> B[Structured site brief]
+    A[Successfully registered domain] --> B[Structured site brief]
     B --> C[Keyword and entity map]
     C --> D[Page and internal-link plan]
     D --> E[Copy and schema]

@@ -2,14 +2,14 @@
 layout: default
 title: Domain Intelligence Playbook
 nav_order: 1
-description: Production blueprint for selecting and building the best expired domains for local service SEO.
+description: Production blueprint for finding and evaluating local-service domains before they drop.
 permalink: /
 ---
 
 # Domain Intelligence Playbook
 {: .fs-9 }
 
-Turn hundreds of thousands of daily expired-domain rows into zero to five defensible local service assets. The normal target is two or three registrations per day.
+Turn hundreds of thousands of expiring-domain rows into a ranked drop-day list of zero to five defensible local-service assets. The normal target is two or three registrations per day.
 {: .fs-6 .fw-300 }
 
 [Start with the machine architecture]({{ '/architecture/' | relative_url }})
@@ -21,11 +21,11 @@ Turn hundreds of thousands of daily expired-domain rows into zero to five defens
 
 | Stage | Expected daily volume |
 |:--|--:|
-| Raw feed | 100,000–500,000 |
-| Hard-filter survivors | 5,000–25,000 |
-| Enriched candidates | 250–1,500 |
-| AI-reviewed finalists | 20–50 |
-| Human review queue | 10–20 |
+| Expiring-feed rows | 100,000–500,000 |
+| Early-filter survivors | 5,000–25,000 |
+| Lifecycle watchlist | 250–1,500 |
+| Confirmed `pendingDelete` candidates | 20–100 |
+| Ranked drop-day queue | 5–20 |
 | Registered domains | 0–5 |
 
 The correct result can be zero. The limit is a ceiling, not a quota.
@@ -38,11 +38,14 @@ Evidence before opinion
 Cheap decisions first
 : Do not pay for SEO data until deterministic rules have removed most candidates.
 
-Standard registration only
-: Exclude auctions, backorders, premium aftermarket listings, and taken domains.
+Expiration is not the drop
+: Treat the published expiration date as a discovery signal. Monitor registry status and calculate the actionable drop window only after `pendingDelete` is confirmed.
 
-Human registration gate
-: Keep final registration approval human until at least 60 days of measured results.
+Standard registration only
+: Exclude auctions, backorders, premium aftermarket listings, and domains that require anything beyond normal registration price.
+
+Human approval, automated timing
+: Approve the ranked queue before drop day, then let the registrar integration submit registration attempts at the predicted drop time.
 
 Business outcomes win
 : Optimize for qualified lead profit and asset value, not third-party SEO metrics alone.
@@ -51,8 +54,8 @@ Business outcomes win
 
 | Layer | Recommendation |
 |:--|:--|
-| Durable orchestration | Temporal Cloud |
-| File landing | Amazon S3 + EventBridge |
+| Scheduling and orchestration | Temporal Cloud or cron for the MVP |
+| Feed ingestion | Python + PostgreSQL `COPY` |
 | Data processing | Python + Polars |
 | System of record | PostgreSQL |
 | SEO and keyword evidence | DataForSEO |
@@ -64,3 +67,5 @@ Business outcomes win
 | DNS and edge | Cloudflare |
 | Measurement | Search Console + GA4 + CallRail |
 | Reporting | Metabase |
+
+No S3 layer is required for the first version. Download the provider file to temporary local storage, load it into an unlogged PostgreSQL staging table, merge it into canonical tables, record its checksum and import result, then delete the temporary file.

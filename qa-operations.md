@@ -38,6 +38,8 @@ A required failure blocks launch.
 Track:
 
 - feed funnel counts
+- lifecycle transitions and drop-time prediction error
+- registrations captured versus attempted
 - enrichment cost per finalist
 - API failures and rate limits
 - human reversal rate

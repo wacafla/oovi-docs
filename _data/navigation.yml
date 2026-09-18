@@ -2,13 +2,15 @@
   url: /
 - title: Machine architecture
   url: /architecture/
+- title: Domain lifecycle
+  url: /lifecycle/
 - title: Domain pipeline
   url: /pipeline/
 - title: Geo keyword intelligence
   url: /keyword-intelligence/
 - title: Scoring and AI review
   url: /scoring/
-- title: Registration gate
+- title: Drop-day registration
   url: /registration/
 - title: WordPress factory
   url: /wordpress-factory/

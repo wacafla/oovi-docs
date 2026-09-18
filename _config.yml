@@ -21,7 +21,7 @@
 title: Oovi Domain Intelligence
 email: steven@oovi.co
 description: >-
-  Technical blueprint for turning daily expired-domain feeds into high-value local service websites.
+  Technical blueprint for finding high-value local service domains before they drop.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://docs.oovi.co" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: wacafla

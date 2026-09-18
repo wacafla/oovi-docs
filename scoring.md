@@ -28,7 +28,7 @@ Geo keyword value now includes local search volume, CPC, commercial intent, expe
 
 | Adjusted score | Decision |
 |--:|:--|
-| 85–100 | Registration candidate |
+| 85–100 | Drop-queue candidate |
 | 75–84 | Manual review |
 | 65–74 | Watchlist |
 | Below 65 | Reject |
@@ -74,4 +74,4 @@ Required response:
 }
 ```
 
-Run a second adversarial review on the top five: find the strongest reason not to register each domain.
+Run a second adversarial review on the top five: find the strongest reason not to register each domain. Rank approved domains inside their predicted drop window, not only inside the daily batch.

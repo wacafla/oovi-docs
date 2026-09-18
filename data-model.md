@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Data model
-nav_order: 9
+nav_order: 10
 permalink: /data-model/
 ---
 
@@ -9,13 +9,25 @@ permalink: /data-model/
 
 ```text
 feed_runs
-  id, source, file_hash, delivered_at, rows_received, schema_version, status
+  id, source, source_filename, sha256, fetched_at, rows_received,
+  rows_loaded, schema_version, parser_version, status, error_summary
+
+feed_stage_expiring                         -- UNLOGGED; truncate per successful merge
+  feed_run_id, source_row_id, domain, reported_expiration_at, registrar, raw_payload
 
 domains
-  id, fqdn, root, tld, first_seen_at, current_status, registration_status
+  id, fqdn, root, tld, first_seen_at, current_lifecycle_state, watch_status
 
 domain_observations
-  domain_id, feed_run_id, source_row_id, availability_checked_at, drop_time, raw_payload
+  domain_id, feed_run_id, source_row_id, reported_expiration_at, raw_payload, observed_at
+
+lifecycle_observations
+  domain_id, source, registry_status, registrar_status, registry_expiration_at,
+  registrar_expiration_at, observed_at, raw_payload
+
+drop_predictions
+  domain_id, rule_version, predicted_drop_at, window_start, window_end,
+  confidence, evidence_json, calculated_at
 
 features
   domain_id, parser_version, tokens, geo_json, service_json, lexical_json
@@ -32,10 +44,15 @@ keyword_metrics
 
 scores
   domain_id, model_version, components_json, penalties_json, raw_score,
-  confidence, adjusted_score, decision
+  confidence, adjusted_score, decision, scored_at
 
-reviews
-  domain_id, reviewer_type, reviewer_id, prompt_version, outcome, reasons
+drop_queue
+  domain_id, drop_prediction_id, rank, priority, approved_by, approved_at,
+  max_normal_price, route_plan_json, state
+
+registration_attempts
+  domain_id, drop_queue_id, registrar, idempotency_key, attempted_at,
+  request_state, response_code, result, charged_price, response_json
 
 registrations
   domain_id, registrar, registered_at, registration_term, renewal_price,
@@ -48,4 +65,4 @@ performance_daily
   site_id, date, impressions, clicks, calls, forms, qualified_leads, revenue
 ```
 
-The domain is the durable identity. Every feed observation, evidence snapshot, predicted keyword, score, review, registration, site, and outcome attaches to it.
+The domain is the durable identity. Keep every lifecycle observation so the drop model can be audited and improved. Keep observed timestamps separate from predicted timestamps, and never overwrite historical scores or evidence.

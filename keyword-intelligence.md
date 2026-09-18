@@ -9,7 +9,7 @@ permalink: /keyword-intelligence/
 
 Predict the queries a domain could rank for, then measure demand and commercial value in the exact geography.
 
-This stage runs after the domain passes safety and history checks but before final scoring.
+This stage runs after `pendingDelete` is confirmed and the domain passes safety and history checks, but before final scoring.
 
 ## Keyword-generation process
 

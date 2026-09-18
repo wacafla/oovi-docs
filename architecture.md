@@ -8,67 +8,49 @@ permalink: /architecture/
 
 # Machine architecture
 
-The pipeline is one durable workflow. Each stage writes its evidence and status before the next stage starts.
+The machine is a PostgreSQL-first pipeline with two enrichment stages. The expiring feed creates a watchlist; registry status determines when a candidate is close enough to a real drop to justify full intelligence.
 
 ```mermaid
 flowchart TD
-    A[Daily expired-domain file] --> B[S3 raw landing]
-    B --> C[Temporal workflow]
-    C --> D[Python + Polars normalize]
-    D --> E[PostgreSQL deduplicate]
-    E --> F[Hard rules filter]
-    F --> G[Registrar availability API]
-    G --> H[Archive + safety checks]
-    H --> I[Keyword prediction]
-    I --> J[Geo search volume + CPC]
-    J --> K[Backlink + SERP enrichment]
-    K --> L[Deterministic scoring]
-    L --> M[OpenAI finalist review]
-    M --> N[Next.js human review]
-    N -->|Reject| O[Decision ledger]
-    N -->|Approve| P[Final availability check]
-    P --> Q[Registrar API]
-    Q --> R[Site brief generation]
-    R --> S[WP-CLI site factory]
-    S --> T[Playwright + Lighthouse QA]
-    T --> U[Publish through Cloudflare]
-    U --> V[Search Console + GA4 + CallRail]
-    V --> W[Metabase + scoring feedback]
+    A[Daily expiring-domain file] --> B[PostgreSQL staging]
+    B --> C[Normalize and deduplicate]
+    C --> D[Cheap rules and name parsing]
+    D --> E[Lifecycle watchlist]
+    E --> F[RDAP or WHOIS polling]
+    F -->|Renewed or removed| G[Close candidate]
+    F -->|pendingDelete| H[Full intelligence]
+    H --> I[Geo keywords and SEO evidence]
+    I --> J[Score and AI review]
+    J --> K[Human-approved drop queue]
+    K --> L[Timed registrar attempts]
+    L -->|Success| M[WordPress factory]
+    L -->|Miss| N[Record outcome]
 ```
 
 ## Moving parts
 
 | # | Moving part | Recommended technology | Output |
 |--:|:--|:--|:--|
-| 1 | Receive feed | S3 + EventBridge | Immutable raw file |
-| 2 | Control run | Temporal Cloud | Durable workflow state |
-| 3 | Parse at volume | Python + Polars | Normalized rows |
-| 4 | Deduplicate | PostgreSQL | Canonical domains |
-| 5 | Apply rules | Python + versioned YAML | Qualified shortlist |
-| 6 | Check availability | Registrar API | Registerable domains only |
-| 7 | Inspect history | Internet Archive CDX | Topic and abuse timeline |
-| 8 | Check safety | Google Safe Browsing + DNS | Risk signals |
-| 9 | Predict keywords | Python taxonomy + OpenAI | Candidate keyword universe |
-| 10 | Measure local demand | DataForSEO | Geo volume, CPC, competition |
-| 11 | Measure SEO strength | DataForSEO Backlinks + SERP | Link and ranking evidence |
-| 12 | Score candidates | Python service | Versioned component scores |
-| 13 | Review finalists | OpenAI Structured Outputs | Buy/review/reject evidence |
-| 14 | Approve manually | Next.js console | Audited decision |
-| 15 | Register | Registrar API | Domain and DNS record |
-| 16 | Generate site | OpenAI + structured facts | Site brief and content package |
-| 17 | Build WordPress | WP-CLI + REST API | Staging site |
-| 18 | Test | Playwright + Lighthouse CI | Launch gate |
-| 19 | Publish | GitHub Actions + Cloudflare | Live site |
-| 20 | Learn | Search Console + CallRail + Metabase | Updated scoring evidence |
+| 1 | Download expiring feed | Python scheduled worker | Temporary CSV/ZIP file |
+| 2 | Bulk ingest | PostgreSQL unlogged staging + `COPY` | Imported feed run |
+| 3 | Normalize and deduplicate | SQL + Python/Polars | Canonical domains and observations |
+| 4 | Parse service and geography | Python taxonomy | Structured name features |
+| 5 | Apply cheap filters | Python + versioned YAML | Lifecycle watchlist |
+| 6 | Track registry state | RDAP first; WHOIS fallback | Status history and drop estimate |
+| 7 | Inspect history and safety | Internet Archive CDX + Safe Browsing | Risk timeline |
+| 8 | Predict keywords | Service taxonomy + OpenAI | Candidate keyword clusters |
+| 9 | Measure local demand | DataForSEO | Geo volume, CPC, competition |
+| 10 | Measure SEO strength | DataForSEO Backlinks + SERP | Link and ranking evidence |
+| 11 | Score candidates | Versioned Python service | Ranked drop-day queue |
+| 12 | Review finalists | OpenAI Structured Outputs + human UI | Approved attempt plan |
+| 13 | Attempt registration | Two or more registrar APIs | Registration result |
+| 14 | Generate site | OpenAI + structured facts | Site brief and content package |
+| 15 | Build WordPress | WP-CLI + REST API | Staging site |
+| 16 | Test and publish | Playwright, Lighthouse, Cloudflare | Live, verified site |
+| 17 | Learn | Search Console, CallRail, Metabase | Scoring feedback |
 
-## Orchestrator choice
+## Orchestration
 
-Use Temporal Cloud for the core pipeline. Hundreds of thousands of rows, long-running enrichment, provider rate limits, retries, and partial failures require durable execution.
+Start with scheduled Python workers and PostgreSQL job tables. Move to Temporal Cloud when retry chains, provider rate limits, concurrent drop attempts, and long-running workflows become operationally difficult.
 
-Use n8n only for peripheral automation:
-
-- Slack or email alerts
-- Approval notifications
-- CRM updates
-- Daily digest delivery
-- Simple webhook routing
+Use n8n for peripheral work such as alerts, approval notices, CRM updates, and daily summaries. Do not make it the high-volume row processor.

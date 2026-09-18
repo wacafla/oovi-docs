@@ -1,61 +1,63 @@
 ---
 layout: default
 title: 90-day roadmap
-nav_order: 10
+nav_order: 11
 permalink: /roadmap/
 ---
 
 # 90-day roadmap
 
-## Weeks 1–2: data foundation
+## Weeks 1–2: PostgreSQL ingestion
 
-- ingest files
-- normalize and deduplicate
-- create service and geo taxonomy
-- implement immutable raw storage
-- replay historical feeds
-- expose funnel counts
+- schedule feed download and direct `COPY` ingestion
+- create unlogged staging and canonical tables
+- normalize and deduplicate domains
+- create service and geography taxonomies
+- record checksums, parser versions, counts, and failures
+- expose daily funnel counts
 
-## Weeks 3–4: rules and availability
+## Weeks 3–4: lifecycle watchlist
 
-- implement hard filters
-- add registrar availability checks
-- add archive, DNS, and safety checks
-- sample rejected domains for false negatives
-- reduce the feed by at least 95% before paid SEO calls
+- implement cheap deterministic filters
+- integrate RDAP with a controlled WHOIS fallback
+- store state changes as append-only observations
+- implement registry-specific drop-window rules
+- close renewed, transferred, and auction-only candidates
+- validate predictions against actual drops
 
-## Weeks 5–6: keyword and SEO intelligence
+## Weeks 5–6: full intelligence
 
+- trigger paid enrichment only for confirmed `pendingDelete` candidates
+- add archive, safety, backlink, and anchor checks
 - predict keyword clusters
-- add city, county, metro, and state volume calls
-- store CPC and monthly history
-- calculate modeled geo volume and confidence
-- add backlink and SERP evidence
-- publish the first daily top-20 report
+- request city, county, metro, and state keyword metrics
+- calculate modeled geo demand, lead value, and confidence
+- publish the first drop-day ranked report
 
-## Weeks 7–8: scoring and review console
+## Weeks 7–8: scoring and execution
 
-- version scoring weights
-- add keyword lead-value estimates
-- add structured AI review
-- add adversarial top-five review
-- build the Next.js approval screen
-- record every decision
+- version scoring weights and risk rules
+- add structured AI and adversarial reviews
+- build the approval and drop-queue screen
+- integrate at least two registrar APIs
+- implement locks, idempotency, reconciliation, and attempt logs
+- run dry tests without purchase calls
 
 ## Weeks 9–10: WordPress factory
 
-- finalize block theme and pattern library
+- finalize the block theme and pattern library
 - define the site-brief schema
-- automate staging builds
-- configure analytics and CallRail
-- automate technical QA
+- automate staging builds and content injection
+- configure measurement and call tracking
+- automate technical and visual QA
 
-## Weeks 11–12: launch and learn
+## Weeks 11–12: controlled operation
 
-- launch a controlled cohort
-- measure indexing, rankings, calls, and leads
-- review rejected samples
-- adjust weights
-- document operator procedures
+- enable human-approved timed registration attempts
+- launch a small cohort
+- measure capture rate, indexing, rankings, calls, and leads
+- inspect missed and rejected candidates
+- adjust lifecycle rules and scoring weights
+- document operator procedures and incident recovery
 
-By the end of week four, the system should already produce a defensible daily shortlist even if registration and site production remain manual.
+By the end of week four, the system should produce a credible lifecycle watchlist. By the end of week eight, it should produce and execute a human-approved ranked queue for each drop window.
